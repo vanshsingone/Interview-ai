@@ -1,9 +1,8 @@
-const momgooose = require("mongoose")
+const mongoose = require("mongoose")
 
 async function connectTODB() {
-    await mongoose.connect(process.env.MONGO_URI)
-
-    try{
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
         console.log("Connected to database")
     } catch (error) {
         console.error("Error connecting to database:", error)
