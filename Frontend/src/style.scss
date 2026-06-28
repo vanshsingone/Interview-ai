@@ -1,4 +1,4 @@
-//@use "./style/button.scss";
+@use "./style/button.scss";
 
 * {
     margin: 0%;
@@ -17,4 +17,90 @@ body,
 
 .highlight{
     color: #d20d3b;
+}
+
+// ── Premium Loader Styles ───────────────────────────────────
+.loading-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d1117; // matches default theme
+    color: #e6edf3;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    gap: 1.5rem;
+
+    .loader-spinner {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 0.5rem;
+        
+        .loader-ring {
+            box-sizing: border-box;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-top-color: #ff2d78; // accent pink
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+
+        .loader-ring:nth-child(2) {
+            animation-delay: -0.3s;
+            border-top-color: rgba(#ff2d78, 0.4);
+        }
+
+        .loader-ring:nth-child(3) {
+            animation-delay: -0.6s;
+            border-top-color: rgba(#ff2d78, 0.15);
+        }
+
+        .loader-core {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, #ff2d78 0%, rgba(#ff2d78, 0.3) 100%);
+            border-radius: 50%;
+            animation: pulse 1.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px #ff2d78);
+        }
+    }
+
+    h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+        letter-spacing: 0.02em;
+        animation: pulseText 1.8s ease-in-out infinite;
+    }
+
+    p {
+        font-size: 0.875rem;
+        color: #7d8590;
+        margin: 0;
+        max-width: 320px;
+        text-align: center;
+        line-height: 1.5;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(0.85); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes pulseText {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }

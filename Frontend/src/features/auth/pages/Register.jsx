@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { useNavigate, Link } from 'react-router'
+import "../auth.form.scss"
 import { useAuth } from '../hooks/useAuth'
 
 const Register = () => {
@@ -8,13 +9,19 @@ const Register = () => {
     const [ username, setUsername ] = useState("")
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
+    const [ error, setError ] = useState("")
 
     const {loading,handleRegister} = useAuth()
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await handleRegister({username,email,password})
-        navigate("/")
+        setError("")
+        const res = await handleRegister({username,email,password})
+        if (res && res.success) {
+            navigate("/")
+        } else {
+            setError(res?.error || "Registration failed")
+        }
     }
 
     if(loading){
@@ -25,7 +32,7 @@ const Register = () => {
         <main>
             <div className="form-container">
                 <h1>Register</h1>
-
+                {error && <div style={{ color: "#e1034d", fontWeight: "bold", fontSize: "0.9rem", padding: "0.5rem 0" }}>{error}</div>}
                 <form onSubmit={handleSubmit}>
 
                     <div className="input-group">
