@@ -6,16 +6,32 @@ const app = express()
 
 app.use(express.json())
 app.use(cookieParser())
+
+// Build allowed origins list
+const allowedOrigins = ["http://localhost:5173"];
 let frontendUrl = process.env.FRONTEND_URL;
 if (frontendUrl) {
-    // Remove any quotes and trim whitespace/control characters
-    frontendUrl = frontendUrl.replace(/['"]/g, "").trim();
+    // Remove any quotes, trim whitespace, and strip trailing slash
+    frontendUrl = frontendUrl.replace(/['"]/g, "").trim().replace(/\/+$/, "");
+    allowedOrigins.push(frontendUrl);
 }
 
 app.use(cors({
-    origin: frontendUrl || "http://localhost:5173",
-    credentials: true
+    origin: function (origin, callback) {
+        // Allow requests with no origin (mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }))
+
+// Explicitly handle preflight requests
+app.options("*", cors())
 
 /* require all the routes here */
 const authRouter = require("./routes/auth.routes")
