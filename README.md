@@ -11,6 +11,10 @@
 [![Express](https://img.shields.io/badge/Express-5-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_App-FF6B6B?style=for-the-badge)](https://interview-ai-zeta-beryl.vercel.app/)
+
+🔗 **Live Demo:** [https://interview-ai-zeta-beryl.vercel.app/](https://interview-ai-zeta-beryl.vercel.app/)
+
 **Interview AI** analyzes job descriptions against your resume or self-description using **Google Gemini 2.5 Flash** to generate a personalized interview preparation strategy — complete with tailored questions, skill-gap analysis, a day-by-day study plan, and an AI-generated, ATS-friendly resume PDF.
 
 [Features](#-features) · [Quick Start](#-quick-start) · [API Reference](#-api-reference) · [Architecture](#-architecture) · [Contributing](#-contributing)
