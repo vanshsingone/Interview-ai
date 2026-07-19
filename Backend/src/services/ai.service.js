@@ -3,8 +3,11 @@ const { z } = require("zod")
 const { zodToJsonSchema } = require("zod-to-json-schema")
 const puppeteer = require("puppeteer")
 
+const rawApiKey = process.env.GOOGLE_GENAI_API_KEY || "";
+const sanitizedApiKey = rawApiKey.replace(/[\r\n\s]+/g, "");
+
 const ai = new GoogleGenAI({
-    apiKey: process.env.GOOGLE_GENAI_API_KEY
+    apiKey: sanitizedApiKey
 })
 
 
