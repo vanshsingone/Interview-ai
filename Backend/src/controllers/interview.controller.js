@@ -12,7 +12,7 @@ async function generateInterViewReportController(req, res) {
     try {
         let resumeText = ""
         if (req.file) {
-            const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
+            const resumeContent = await pdfParse(req.file.buffer)
             resumeText = resumeContent.text || ""
         }
         
